@@ -1,0 +1,62 @@
+TABLA: Minerales
+Atributos:
+- od_mineral (PK)
+- nombre_mineral
+
+TABLA: Factorías
+Atributos:
+- od_factoria (PK)
+- nombre_factoria
+- ano_fundacion
+
+TABLA: Lugares
+Atributos:
+- od_lugar (PK)
+- nombre_lugar
+- coordenadas
+- od_astro (FK de Astros)
+
+TABLA: Prospecciones
+Atributos:
+- prospeccion# (PK)
+- fecha_prospeccion
+- coste_prospeccion
+- od_prospeccion
+- od_mineral (FK de Minerales)
+- od_lugar (FK de Lugares)
+
+
+
+TABLA: Astros
+Atributos:
+- od_astro (PK)
+- nombre_astro
+
+TABLA: Planetas
+Atributos:
+- od_astro (PK, FK de Astros)
+
+TABLA: Satélites
+Atributos:
+- od_astro (PK, FK de Astros)
+- planeta_id (FK de Planetas)
+
+RELACIÓN: Factoría-Minerales (F-M)
+Atributos:
+- od_factoria (PK, FK de Factorías)
+- od_mineral (PK, FK de Minerales)
+
+RELACIÓN: Factoría-Lugares (F-L)
+Atributos:
+- od_factoria (PK, FK de Factorías)
+- od_lugar (PK, FK de Lugares)
+
+RELACIÓN: Lugares-Astros (A-L)
+Atributos:
+- od_lugar (PK, FK de Lugares)
+- od_astro (PK, FK de Astros)
+
+RELACIÓN: Planetas-Satélites (P-S)
+Atributos:
+- planeta_id (PK, FK de Planetas)
+- od_astro (PK, FK de Satélites)
