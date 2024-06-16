@@ -20,6 +20,25 @@ Explicación:
 
 ALTER TABLE DEPARTAMENTO ADD NUMTRAB NUMBER;
 
+CREATE OR REPLACE TRIGGER increment_numtrab
+AFTER INSERT ON EMPLEADO
+FOR EACH ROW
+BEGIN
+    UPDATE DEPARTAMENTO
+    SET NUMTRAB = NUMTRAB + 1
+    WHERE CODDPTO = :NEW.DPTO;
+END;
+/
+
+/*
+Crear un Trigger:
+
+CREATE OR REPLACE TRIGGER increment_numtrab: Crea un trigger llamado increment_numtrab.
+AFTER INSERT ON EMPLEADO FOR EACH ROW: El trigger se ejecuta después de cada inserción en la tabla EMPLEADO.
+BEGIN ... END;: Define el bloque PL/SQL del trigger.
+UPDATE DEPARTAMENTO SET NUMTRAB = NUMTRAB + 1 WHERE CODDPTO = :NEW.DPTO;: Incrementa el campo NUMTRAB en la tabla DEPARTAMENTO en 1, donde CODDPTO coincide con el valor del departamento del nuevo empleado (:NEW.DPTO).
+*/
+
 /*
 Explicación:
 ALTER TABLE DEPARTAMENTO ADD NUMTRAB NUMBER: Añade un nuevo atributo NUMTRAB a la tabla DEPARTAMENTO, que almacenará el número de trabajadores de cada departamento.
